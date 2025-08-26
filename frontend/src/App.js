@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import axios from 'axios';
 import { useDropzone } from 'react-dropzone';
-import { Container, Row, Col, Card, Button, ProgressBar, Alert, Table } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, ProgressBar, Alert, Table, Modal } from 'react-bootstrap';
 import './App.css';
 import { utils, writeFile } from 'xlsx';
 import LandingPage from './components/LandingPage';
@@ -12,6 +12,7 @@ function App() {
   const [processedData, setProcessedData] = useState(null);
   const [error, setError] = useState('');
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
 
   const onDrop = useCallback(acceptedFiles => {
     setFile(acceptedFiles[0]);
@@ -44,6 +45,7 @@ function App() {
       });
       setProcessedData(response.data.data);
       setError('');
+      setShowDownloadModal(true); // Show modal when data is processed
     } catch (err) {
       setError('File upload failed. Please try again.');
       console.error(err);
@@ -68,15 +70,14 @@ function App() {
       utils.book_append_sheet(workbook, worksheet, 'Transactions');
       writeFile(workbook, 'transactions.xlsx');
     }
+    setShowDownloadModal(false); // Close modal after download
   };
 
 
   return (
     <div>
       {showLanding ? (
-        <Container className="mt-5">
-          <LandingPage onGetStarted={() => setShowLanding(false)} />
-        </Container>
+        <LandingPage onGetStarted={() => setShowLanding(false)} />
       ) : (
         <Container className="mt-5">
           <Row className="justify-content-md-center">
@@ -133,6 +134,26 @@ function App() {
               </Col>
             </Row>
           )}
+
+          <Modal show={showDownloadModal} onHide={() => setShowDownloadModal(false)} centered>
+            <Modal.Header closeButton>
+              <Modal.Title>Download Ready!</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="text-center">
+              <p>Your file has been successfully processed and is ready for download.</p>
+              <Button variant="success" onClick={() => handleDownload('xlsx')} className="me-2">
+                Download Excel (XLSX)
+              </Button>
+              <Button variant="info" onClick={() => handleDownload('csv')}>
+                Download CSV
+              </Button>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => setShowDownloadModal(false)}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </Container>
       )}
     </div>

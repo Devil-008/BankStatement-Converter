@@ -1,9 +1,23 @@
+:root {
+  --primary: #7DCD85;
+  --primary-dark: #6EBF7A;
+  --primary-light: #E6F7E9;
+  --primary-lighter: #F2FAF3;
+  --text-dark: #343a40;
+  --text-light: #f8f9fa;
+
+  /* Override Bootstrap primary color variables */
+  --bs-primary: var(--primary);
+  --bs-primary-rgb: 125, 205, 133; /* RGB values of #7DCD85 */
+  --bs-primary-hover: var(--primary-dark);
+}
+
 body {
   background-color: #f8f9fa;
 }
 
 .dropzone {
-  border: 2px dashed #007bff;
+  border: 2px dashed var(--primary);
   border-radius: 5px;
   padding: 20px;
   text-align: center;
@@ -12,7 +26,7 @@ body {
 }
 
 .dropzone.active {
-  border: 2px solid #0056b3;
+  border: 2px solid var(--primary-dark);
 }
 
 .dropzone p {
@@ -21,9 +35,44 @@ body {
 }
 
 .card-header {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--primary);
+  color: var(--text-light);
+}
+
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark) !important;
+  border-color: var(--primary-dark) !important;
+}
+
+.btn-success {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.btn-success:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-info {
+  background-color: var(--primary-light);
+  border-color: var(--primary-light);
+  color: var(--text-dark);
+}
+
+.btn-info:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-light);
+}
+
+.progress-bar {
+  background-color: var(--primary);
 }
 
 /* landing styles moved to component-scoped CSS */
-
