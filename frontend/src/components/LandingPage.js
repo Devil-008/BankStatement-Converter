@@ -116,12 +116,13 @@ export default function LandingPage({ onGetStarted }) {
           <Row>
             <Col>
               <p>&copy; {new Date().getFullYear()} Statement Converter. All Rights Reserved.</p>
+              <p className="heart-text">Developed with <span className="heart-icon"> ❤️ </span> By Himanshu</p>
               <div className="social-icons">
                 <motion.a href="https://twitter.com" aria-label="Twitter" whileHover={{ y: -5 }}><FaTwitter /></motion.a>
                 <motion.a href="https://linkedin.com" aria-label="LinkedIn" whileHover={{ y: -5 }}><FaLinkedin /></motion.a>
                 <motion.a href="https://github.com" aria-label="GitHub" whileHover={{ y: -5 }}><FaGithub /></motion.a>
               </div>
-              <p className="heart-text">Developed with <span className="heart-icon">❤️</span></p>
+              
             </Col>
           </Row>
         </Container>

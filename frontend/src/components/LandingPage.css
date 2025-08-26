@@ -27,31 +27,33 @@ body {
   padding-right: 15px;
 }
 
+
+.footer p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin: 6px 0;
+}
+
 .heart-text {
-  font-size: 0.9rem;
-  color: var(--text-dark);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 8px;
+  /* inherit color & size from .footer p */
+  color: inherit;
+  font-size: inherit;
 }
 
 .heart-icon {
-  color: #e74c3c;
-  margin: 0 5px;
+  color: inherit; /* same color as surrounding text */
+  margin: 0 6px;
   animation: pulse-heart 1.5s infinite ease-in-out;
+  font-size: 1.05em; /* slight scale to match visual weight */
 }
-
 @keyframes pulse-heart {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
 .hero-section {
