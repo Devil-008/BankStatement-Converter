@@ -112,7 +112,7 @@ export default function LandingPage({ onGetStarted }) {
       </main>
 
       <footer id="contact" className="footer text-center">
-        <Container>
+        <Container fluid>
           <Row>
             <Col>
               <p>&copy; {new Date().getFullYear()} Statement Converter. All Rights Reserved.</p>
